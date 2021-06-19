@@ -1,0 +1,162 @@
+.container{
+  background-color: var(--ion-color-light);
+}
+
+mat-sidenav{
+  background-color: var(--ion-color-light);
+  width: 350px;
+}
+
+mat-sidenav.md .content {
+  padding: 20px 10px;
+  background-color: var(--ion-color-light);
+}
+
+mat-sidenav.md ion-list {
+  padding: 20px 0;
+}
+
+mat-sidenav.md ion-note {
+  margin-bottom: 30px;
+}
+
+mat-sidenav.md ion-list-header,
+mat-sidenav.md ion-note {
+  padding-left: 10px;
+}
+
+mat-sidenav.md ion-list#main-list {
+  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+}
+
+mat-sidenav.md ion-list#main-list ion-list-header {
+  font-size: 22px;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+mat-sidenav.md ion-item {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  border-radius: 4px;
+}
+
+mat-sidenav.md ion-item.selected {
+  --background: rgba(var(--ion-color-custom-primary-rgb), 0.14);
+}
+
+mat-sidenav.md ion-item.selected ion-icon {
+  color: var(--ion-color-custom-primary);
+}
+
+mat-sidenav.md ion-item ion-icon {
+  color: #616e7e;
+}
+
+mat-sidenav.md ion-item ion-label {
+  font-weight: 500;
+}
+
+mat-sidenav.ios ion-content {
+  --padding-bottom: 20px;
+}
+
+mat-sidenav.ios ion-list {
+  padding: 20px 0 0 0;
+}
+
+mat-sidenav.ios ion-note {
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+mat-sidenav.ios ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 50px;
+}
+
+mat-sidenav.ios ion-item.selected ion-icon {
+  color: var(--ion-color-custom-primary);
+}
+
+mat-sidenav.ios ion-item ion-icon {
+  font-size: 24px;
+  color: #73849a;
+}
+
+// mat-sidenav.ios ion-list#labels-list ion-list-header {
+//   margin-bottom: 8px;
+// }
+
+mat-sidenav.ios ion-list-header,
+mat-sidenav.ios ion-note {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+mat-sidenav.ios ion-note {
+  margin-bottom: 8px;
+}
+
+ion-note {
+  display: inline-block;
+  font-size: 16px;
+  color: var(--ion-color-medium-shade);
+}
+
+ion-item.selected {
+  --color: var(--ion-color-custom-primary);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.is-mobile .sidenav-container {
+  flex: 1 0 auto;
+  mat-sidenav{
+    width: 70%;
+  }
+}
+
+.avatar{
+  width: 100px;
+  height: 100px;
+  
+  background-color: #a9aaad;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon{
+    font-size: 70px;
+    color: #f4f5f8
+  }
+}
+
+.avatar-center{
+  margin: 0 auto 20px auto;
+}
+
+ion-title span{
+  font-size: 12px;
+  position: absolute;
+  margin-left: 5px;
+}
+
+.no-picture{
+  opacity: 0;
+  z-index: -10;
+  position: absolute;
+}

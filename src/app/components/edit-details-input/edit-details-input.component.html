@@ -1,0 +1,174 @@
+<mat-form-field [id]="id" appearance="outline" floatLabel="always" *ngIf="type == 'text' || type == 'email' || type == 'number'">
+  <mat-label>{{ label }}</mat-label>
+
+  <input #input 
+    [type]="type" matInput autocomplete="off" [formControl]="formControl" [maxlength]="maxLength" [attr.inputmode]="inputmode"
+    [readonly]="!canEdit" (blur)="onBlur($event)" (ngModelChange)="onChange()" (keydown)="preventKeyDown($event)"
+    [appCurrencyInput]="directives == 'currency'"
+    >
+
+  <mat-error *ngIf="formControl.getError('required')">{{ label }} is <strong>required</strong></mat-error>
+  <mat-error *ngIf="formControl.getError('email') && !formControl.getError('required') && !formControl.getError('maxlength')">Enter a valid email</mat-error>
+  <mat-error *ngIf="formControl.getError('maxlength')">Cannot exceed {{ maxLength }} characters</mat-error>
+  <mat-error *ngIf="formControl.getError('negative')">Enter valid phone number</mat-error>
+ 
+  <mat-icon matPrefix>{{ icon }}</mat-icon>
+  <!-- <mat-icon *ngIf="secondaryIcon?.length > 0" matSuffix>{{ secondaryIcon }}</mat-icon> -->
+  <span *ngIf="suffix?.length > 0" matSuffix>{{ suffix }}</span>
+  <button (click)="setFocusBtnClick()" mat-icon-button matSuffix *ngIf="!noEdit && !canEdit">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <button (click)="secondaryBtnClick()" mat-icon-button matSuffix *ngIf="showSecondaryBtn && ((!canEdit && noEdit) || (canEdit && !noEdit))">
+    <mat-icon>{{ secondaryIcon }}</mat-icon>
+  </button>
+
+  <mat-hint align="end" *ngIf="!canEdit && showSecondaryBtn">
+    <ion-button (click)="secondaryBtnClick()" size="small" class="clear" fill="clear">{{ secondaryText }}</ion-button>
+  </mat-hint>
+
+  <mat-hint align="end" *ngIf="canEdit">
+    <ion-button (click)="check()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ OKText }}</ion-button>
+    <ion-button (click)="exitEditMode()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ CancelText }}</ion-button>
+  </mat-hint>
+
+</mat-form-field>
+
+<mat-form-field appearance="outline" floatLabel="always" *ngIf="type == 'textarea'">
+  <mat-label>{{ label }}</mat-label>
+
+  <textarea #input 
+    [type]="type" matInput autocomplete="off" [formControl]="formControl" [maxlength]="maxLength" [attr.inputmode]="inputmode"
+    [readonly]="!canEdit" (blur)="onBlur($event)" (ngModelChange)="onChange()" (keydown)="preventKeyDown($event)"
+    [appCurrencyInput]="directives == 'currency'"
+    ></textarea>
+
+  <mat-error *ngIf="formControl.getError('required')">{{ label }} is <strong>required</strong></mat-error>
+  <mat-error *ngIf="formControl.getError('email') && !formControl.getError('required') && !formControl.getError('maxlength')">Enter a valid email</mat-error>
+  <mat-error *ngIf="formControl.getError('maxlength')">Cannot exceed {{ maxLength }} characters</mat-error>
+  <mat-error *ngIf="formControl.getError('negative')">Enter valid phone number</mat-error>
+ 
+  <mat-icon matPrefix>{{ icon }}</mat-icon>
+  <mat-icon *ngIf="secondaryIcon?.length > 0" matSuffix>{{ secondaryIcon }}</mat-icon>
+  <span *ngIf="suffix?.length > 0" matSuffix>{{ suffix }}</span>
+  <button (click)="setFocusBtnClick()" mat-icon-button matSuffix *ngIf="!noEdit && !canEdit">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <!-- <button (click)="secondaryBtnClick()" mat-icon-button matSuffix *ngIf="showSecondaryBtn && canEdit">
+    <mat-icon>{{ secondaryIcon }}</mat-icon>
+  </button> -->
+
+  <mat-hint align="end" *ngIf="!canEdit && showSecondaryBtn">
+    <ion-button (click)="secondaryBtnClick()" size="small" class="clear" fill="clear">{{ secondaryText }}</ion-button>
+  </mat-hint>
+
+  <mat-hint align="end" *ngIf="canEdit">
+    <ion-button (click)="check()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ OKText }}</ion-button>
+    <ion-button (click)="exitEditMode()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ CancelText }}</ion-button>
+  </mat-hint>
+
+  <mat-hint *ngIf="showHint" align="start">{{ input.value.length }}/{{ maxLength }}</mat-hint>
+
+
+</mat-form-field>
+
+
+
+<mat-form-field appearance="outline" floatLabel="always" *ngIf="type == 'password'">
+  <mat-label>{{ label }}</mat-label>
+
+  <input matInput #input [type]="hidePassword ? 'password' : 'text'"  autocomplete="off" [formControl]="formControl" [maxlength]="maxLength"
+    [readonly]="!canEdit" (blur)="onBlur($event)" (ngModelChange)="onChange()">
+
+  <mat-error *ngIf="formControl.getError('required')">{{ label }} is <strong>required</strong></mat-error>
+  <mat-error *ngIf="formControl.getError('maxlength')">Cannot exceed {{ maxLength }} characters</mat-error>
+ 
+  <mat-icon matPrefix>{{ icon }}</mat-icon>
+  <button (click)="setFocusBtnClick()" mat-icon-button matSuffix *ngIf="!noEdit && !canEdit">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <button (click)="hidePassword = !hidePassword" mat-icon-button matSuffix *ngIf="canEdit && type == 'password'">
+    <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+  </button>
+
+  <mat-hint align="end" *ngIf="canEdit">
+    <ion-button (click)="check()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ OKText }}</ion-button>
+    <ion-button (click)="exitEditMode()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ CancelText }}</ion-button>
+  </mat-hint>
+
+</mat-form-field>
+
+
+
+
+<mat-form-field appearance="outline" floatLabel="always" *ngIf="type == 'date'">
+  <mat-label>{{ label }}</mat-label>
+
+  <input #input matInput [matDatepicker]="picker" [formControl]="formControl"
+    [readonly]="!canEdit" [maxlength]="maxLength" autocomplete="off" (blur)="onBlur($event)" (ngModelChange)="onChange()">
+  <mat-datepicker-toggle *ngIf="canEdit" datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker [touchUi]="mobileQuery.matches"></mat-datepicker>
+
+  <mat-error *ngIf="formControl.getError('required')">{{ label }} is <strong>required</strong></mat-error>
+  <mat-error *ngIf="formControl.getError('maxlength')">Cannot exceed {{ maxLength }} characters</mat-error>
+  <mat-error *ngIf="formControl.hasError('matDatepickerParse')">Date format is <strong>incorrect</strong></mat-error>
+
+  <mat-icon matPrefix>{{ icon }}</mat-icon>
+  <button (click)="setFocusBtnClick()" mat-icon-button matSuffix *ngIf="!noEdit && !canEdit">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <mat-hint align="end" *ngIf="canEdit">
+    <ion-button (click)="check()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ OKText }}</ion-button>
+    <ion-button (click)="exitEditMode()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ CancelText }}</ion-button>
+  </mat-hint>
+
+</mat-form-field>
+
+
+
+<mat-form-field appearance="outline" floatLabel="always" *ngIf="type == 'select' && !multipleSelectOptions">
+  <mat-label>{{ label }}</mat-label>
+
+  <mat-select  [multiple]="selectMultiple" [formControl]="formControl" (selectionChange)="onChange()">
+    <mat-option *ngIf="enableNullSelction" (click)="noneOptClick()" value="" #noneOpt>None</mat-option>
+    <mat-option #selectOpt (click)="selectOptClick()" *ngFor="let opt of selectOptions" [value]="opt.value">{{ opt.text }}</mat-option>
+  </mat-select>
+
+  <mat-icon matPrefix>{{ icon }}</mat-icon>
+  <mat-error *ngIf="formControl.getError('required')">{{ label }} is <strong>required</strong></mat-error>
+
+  <button (click)="setFocusBtnClick()" mat-icon-button matSuffix *ngIf="!noEdit && !canEdit">
+    <mat-icon>edit</mat-icon>
+  </button>
+  
+  <mat-hint align="end" [class.ion-hide]="!formControl.enabled">
+    <ion-button (click)="check()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ OKText }}</ion-button>
+    <ion-button (click)="exitEditMode()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ CancelText }}</ion-button>
+  </mat-hint>
+</mat-form-field>
+
+<mat-form-field appearance="outline" floatLabel="always" *ngIf="type == 'select' && multipleSelectOptions">
+  <mat-label>{{ label }}</mat-label>
+
+  <mat-select [multiple]="selectMultiple" [formControl]="formControl" (selectionChange)="onChange()">
+    <mat-option *ngIf="enableNullSelction" (click)="noneOptClick()" value="" #noneOpt>None</mat-option>
+    <mat-optgroup *ngFor="let opts of selectOptions" [label]="opts.label">
+      <mat-option #selectOpt (click)="selectOptClick()" *ngFor="let opt of opts?.options" [value]="opt.value">{{ opt.text }}</mat-option>
+    </mat-optgroup>
+  </mat-select>
+
+  <mat-icon matPrefix>{{ icon }}</mat-icon>
+  <mat-error *ngIf="formControl.getError('required')">{{ label }} is <strong>required</strong></mat-error>
+
+  <button (click)="setFocusBtnClick()" mat-icon-button matSuffix *ngIf="!noEdit && !canEdit">
+    <mat-icon>edit</mat-icon>
+  </button>
+  
+  <mat-hint align="end" [class.ion-hide]="!formControl.enabled">
+    <ion-button (click)="check()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ OKText }}</ion-button>
+    <ion-button (click)="exitEditMode()" [disabled]="formControl.invalid" size="small" class="clear" fill="clear">{{ CancelText }}</ion-button>
+  </mat-hint>
+</mat-form-field>

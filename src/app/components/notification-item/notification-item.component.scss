@@ -1,0 +1,14 @@
+
+.no-picture{
+  opacity: 0;
+  z-index: -10;
+  position: absolute;
+}
+
+.unread{
+  --background: rgba(var(--ion-color-custom-primary-rgb), 0.3);
+}
+
+.label{
+  white-space: normal;
+}

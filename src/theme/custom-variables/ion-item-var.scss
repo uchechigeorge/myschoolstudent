@@ -1,0 +1,9 @@
+ion-item{
+  --highlight-color-valid: var(--ion-color-custom-primary);
+  --highlight-color-focused: var(--ion-color-custom-primary);
+  --background: var(--ion-color-light);
+}
+
+ion-item.item-has-focus > ion-label{
+  color: var(--ion-color-custom-primary) !important;
+}

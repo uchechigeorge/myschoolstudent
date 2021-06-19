@@ -1,0 +1,39 @@
+<app-modal-header title="Update Scratch Card" (dismiss)="dismissModal()"></app-modal-header>
+
+<ion-content class="ion-padding ion-text-center main-content">
+
+  <div *ngIf="isLoading" class="ion-padding ion-text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ion-text *ngIf="showError"><h5 class="ion-padding ion-text-center">{{ errMessage }}</h5></ion-text>
+
+  <div *ngIf="!isLoading">
+
+  <div *ngIf="activated" class="activated">
+    <ion-icon style="font-size: 96px;" name="happy-outline"></ion-icon>
+    <br>
+    <ion-text style="font-size: 33px;">Activated</ion-text>
+  </div>
+
+  <div *ngIf="!activated" class="ion-text-center not-activated">
+    <form class="details-form">
+      <mat-form-field class="field-form" appearance="outline">
+        <mat-label>Scratch Card</mat-label>
+        <input matInput type="text" [formControl]="formControl" autocomplete="off" [appScratchCardInput]="true">
+  
+        <mat-error *ngIf="formControl.hasError('required')">Scratch card is <strong>required</strong></mat-error>
+      </mat-form-field>
+    </form>
+
+    <div class="btn-container ion-padding">
+      <ion-button expand="block" (click)="update()" [disabled]="formControl.invalid">
+        <ion-spinner *ngIf="isVerifying" name="crescent"></ion-spinner>
+        <ion-text *ngIf="!isVerifying">Update</ion-text>
+      </ion-button>
+    </div>
+  </div>
+
+  </div>
+
+</ion-content>

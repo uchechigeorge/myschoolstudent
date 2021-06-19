@@ -1,0 +1,49 @@
+<div class="container">
+
+  <div class="info ion-padding" *ngIf="mobileQuery.matches">
+    <div class="info-text">
+      <ion-text class="title-text"><h1>{{ schoolName }}</h1></ion-text>
+      <ion-text class="title-text"><p>Student Account</p></ion-text>
+    </div>
+      
+    <app-login-logo></app-login-logo>
+  </div>
+
+  <div class="inner-container">
+
+    <div class="form-container ion-padding" [style.backgroundColor]="mobileQuery.matches ? '#000' : '#f4f5f8'">
+      
+      <div [class.contact]="mobileQuery.matches">
+
+      <app-login-form [isMobile]="mobileQuery.matches"></app-login-form>
+
+      <br>
+        <div class="contact-details" *ngFor="let detail of contactDetails">
+          <mat-icon style="font-size: 17px;">{{ detail.icon }}</mat-icon>
+          <span style="font-size: 10px;">{{ detail.text }}</span>
+          <br>
+        </div>
+      </div>
+
+      <div class="image-container" *ngIf="mobileQuery.matches">
+        <img [src]="schoolImageSrc">
+      </div>
+
+      <div class="overlay" *ngIf="mobileQuery.matches"></div>
+    </div>
+    
+    <div class="picture-container" *ngIf="!mobileQuery.matches">
+      <div class="picture-overlay">
+        <!-- <img [src]="'./assets/images/images-' + imgSrc + '.jpg'"> -->
+        <img [src]="'./assets/images/school-image.jpeg'">
+      </div>
+
+      <div class="picture-title">
+        <div>
+          <!-- <app-login-title></app-login-title> -->
+          <app-school-title></app-school-title>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

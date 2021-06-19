@@ -1,0 +1,17 @@
+body.dark{
+  mat-expansion-panel{
+    background-color: #333;
+
+    mat-expansion-panel-header{
+      background-color: #333 !important;
+
+      .mat-expansion-indicator::after{
+        color: var(--ion-color-dark);
+      }
+      
+      mat-panel-title{
+        color: #fff;
+      }
+    }
+  }
+}

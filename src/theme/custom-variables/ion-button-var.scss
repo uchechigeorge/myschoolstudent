@@ -1,0 +1,118 @@
+ion-tab-button{
+  // --color-selected: var(--ion-color-custom-primary);
+  // --ripple-color: var(--ion-color-custom-primary);
+  --ion-color-primary: #673AB7;
+}
+
+// ion-button{
+//   --color: var(--ion-color-custom-primary-contrast);
+//   --border-color: var(--ion-color-custom-primary);
+//   --ripple-color: var(--ion-color-custom-primary);
+//   --background-activated: var(--ion-color-custom-primary-tint);
+//   --background: var(--ion-color-custom-primary);
+
+//   &.ios{
+//   --background-focused: var(--ion-color-custom-primary-shade);
+//   }
+// }
+
+// ion-button.outline{
+//   --color: var(--ion-color-custom-primary);
+//   --color-activated: var(--ion-color-custom-primary);
+//   --border-color: var(--ion-color-custom-primary);
+//   --ripple-color: var(--ion-color-custom-primary);
+//   --background: transparent;
+//   --background-activated: var(--ion-color-custom-primary);
+//   --background-focused: var(--ion-color-custom-primary);
+
+//   &.ios{
+//     --color-activated: var(--ion-color-custom-primary-contrast);
+//   }
+// }
+
+// ion-button.clear{
+//   --color: var(--ion-color-custom-primary);
+//   --color-activated: var(--ion-color-custom-primary);
+//   --border-color: transparent;
+//   --ripple-color: var(--ion-color-custom-primary);
+//   --background: transparent;
+//   --background-activated: transparent;
+//   --background-focused: var(--ion-color-custom-primary);
+// }
+
+ion-button{
+  --ion-color-primary: #673AB7;
+}
+
+ion-button.icon{
+  --color: var(--ion-color-dark);
+  --color-activated: var(--ion-color-dark);
+  --border-color: transparent;
+  --ripple-color: var(--ion-color-dark);
+  --background: transparent;
+  --background-activated: transparent;
+  --background-focused: var(--ion-color-dark);
+}
+
+ion-button.ion-focused{
+  outline: 0;
+  button:active{
+    outline: 0;
+  }
+}
+
+ion-button.dark-btn{
+  --color: #fff;
+  --border-color: #222428;
+  --ripple-color: #222428;
+  --background-activated: #383a3e;
+  --background: #222428;
+
+  &.ios{
+  --background-focused: #1e2023;
+  }
+}
+
+ion-button.dark-clear-btn{
+  font-size: 10px;
+  --color: #222428;
+  --color-activated: #222428;
+  --border-color: transparent;
+  --ripple-color: #222428;
+  --background: transparent;
+  --background-activated: transparent;
+  --background-focused: #222428;
+}
+
+.btn-container{
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.double-btn{
+  display: flex;
+  
+  .btn-container{
+  width: 40%;
+  margin: 0 5%;
+  }
+
+  .btn-container:first-child{
+    order: 2;
+  }
+
+  .btn-container:last-child{
+    order: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .double-btn{
+    display: block;
+    .btn-container{
+      width: 100%;
+      display: block;
+      margin: 20px 0;
+    }
+  }
+}

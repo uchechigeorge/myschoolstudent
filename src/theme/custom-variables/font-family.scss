@@ -1,0 +1,32 @@
+:root{
+  --ion-font-family: 'PopRegular';
+
+  *:not(mat-icon) {
+    font-family: PopRegular; 
+  }
+}
+
+@font-face {
+  src: url('/assets/fonts/Poppins-Bold.ttf');
+  font-family: 'PopBold';
+}
+
+@font-face {
+  src: url('/assets/fonts/Poppins-Light.ttf');
+  font-family: 'PopLight';
+}
+
+@font-face {
+  src: url('/assets/fonts/Poppins-Medium.ttf');
+  font-family: 'PopMedium';
+}
+
+@font-face {
+  font-family: 'PopRegular';
+  src: url('/assets/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+  src: url('/assets/fonts/Poppins-Thin.ttf');
+  font-family: 'PopThin';
+}

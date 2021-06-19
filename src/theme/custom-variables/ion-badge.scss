@@ -1,0 +1,11 @@
+ion-badge.toolbar-badge{
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-custom-primary);
+}
+
+body.dark{
+  ion-badge.toolbar-badge{
+    --color: var(--ion-color-dark);
+    --background: var(--ion-color-custom-primary);
+  }  
+}

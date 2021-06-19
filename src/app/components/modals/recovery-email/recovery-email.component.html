@@ -1,0 +1,42 @@
+<app-modal-header title="Add Recovery Email" (dismiss)="dismissModal()"></app-modal-header>
+
+<ion-content class="ion-padding ion-text-center">
+ 
+  <div class="profile-avatar">
+    <div class="picture">
+      <ion-avatar class="ion-text-center">
+        <ion-icon color="medium" name="mail"></ion-icon>
+      </ion-avatar>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="ion-padding ion-text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ion-text *ngIf="showError"><h5 class="ion-padding ion-text-center">{{ errMessage }}</h5></ion-text>
+
+
+  <form class="details-form" *ngIf="!isLoading && !showError">
+    
+    <ion-text class="ion-text-left ion-margin-bottom"><h5>Add a recovery email</h5></ion-text>
+    <div *ngFor="let input of details">
+      <ion-text class="ion-text-left" *ngIf="input.hasHeader"><h4>{{ input.headerTitle }}</h4></ion-text>
+      <app-edit-details-input
+      [label]="input.label" 
+      [model]="input.model"
+      [type]="input.type"
+      [icon]="input.icon"
+      [validators]="input.valiators"
+      [noEdit]="input.noEdit"
+      [selectMultiple]="input.selectMultiple"
+      [selectOptions]="input.selectOptions"
+      [multipleSelectOptions]="input.multipleSelectOptions"
+      [updateInput]="input.updateInput"
+      (onChangeEvent)="input.inputChange($event)"
+      ></app-edit-details-input>
+      <br><br>
+    </div>
+
+  </form>
+</ion-content>

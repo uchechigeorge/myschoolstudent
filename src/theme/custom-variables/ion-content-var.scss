@@ -1,0 +1,25 @@
+ion-content.bg-light{
+  --background: var(--ion-color-light);
+}
+
+@media (max-width: 600px) {
+  // ion-content.mobile-margin{
+  //   --padding-top: 55px;
+  // }
+
+  // ion-content.mobile-margin.ios{
+  //   --padding-top: 40px;
+    // --padding-top: 0px;
+  // }
+  ion-header.mobile-header{
+    +ion-router-outlet{
+      margin-top: 55px;
+    }
+  }
+
+  ion-header.mobile-header.ios{
+    +ion-router-outlet{
+      margin-top: 43px;
+    }
+  }
+}

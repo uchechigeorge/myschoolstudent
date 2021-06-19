@@ -1,0 +1,13 @@
+ion-list{
+  background-color: var(--ion-color-light);
+}
+
+ion-list-header.settings{
+  color: var(--ion-color-custom-primary);
+}
+
+body.dark{ 
+  ion-list-header.settings{
+    color: var(--ion-color-custom-dark);
+  }
+}

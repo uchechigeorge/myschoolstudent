@@ -1,0 +1,38 @@
+<div [class.mobile]="isMobile">
+
+  <ion-text *ngIf="showTitle"><h1>{{ titleText }}</h1></ion-text>
+
+  <form [formGroup]="loginForm" class="input-form" [class.mobile]="isMobile">
+    <mat-form-field class="field-form" appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" formControlName="username" autocomplete="off">
+      <mat-error *ngIf="loginForm.get('username').hasError('required')">Username is <strong>required</strong></mat-error>
+      <mat-error *ngIf="loginForm.get('username').hasError('invalidCredentials')">Invalid credentials</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="field-form" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="off">
+      <mat-error *ngIf="loginForm.get('password').hasError('required')">Password is <strong>required</strong></mat-error>
+      <mat-error *ngIf="loginForm.get('password').hasError('invalidCredentials')">Invalid credentials</mat-error>
+
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+        <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="ion-text-right">
+      <ion-button (click)="forgotPassword()" size="small" class="dark-clear-btn" fill="clear">Forgot password?</ion-button>
+    </div>
+
+    <br><br>
+    <div class="login-btn-container">
+      <ion-button color="custom-primary" (click)="login()" expand="block"
+        [disabled]="loginForm.invalid">
+        <ion-text *ngIf="!isVerifying">Login</ion-text>
+        <ion-spinner *ngIf="isVerifying" name="crescent"></ion-spinner>
+      </ion-button>
+    </div>
+  </form>
+</div>

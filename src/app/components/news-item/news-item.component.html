@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-item>
+    <ion-icon [md]="icon + '-sharp'" [ios]="icon + '-outline'" slot="start"></ion-icon>
+    <ion-label>{{ newsTitle }}</ion-label>
+  </ion-item>
+
+  <ion-card-content>
+    <p>
+      {{ showTruncateText && readMoreVisible ? truncatedText : newsContent }}
+    </p>
+    <br>
+    
+    <div class="read-more" *ngIf="readMoreVisible" (click)="showTruncateText = !showTruncateText">
+      <strong>{{ showTruncateText ? 'Read more' : 'Read less' }}</strong>
+    </div>
+  </ion-card-content>
+</ion-card>

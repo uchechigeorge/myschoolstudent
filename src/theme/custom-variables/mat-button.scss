@@ -1,0 +1,14 @@
+.btn-toggle-container{
+  width: auto;
+  overflow-x: auto;
+
+  mat-button-toggle{
+    background-color: var(--ion-color-light);
+    color: var(--ion-color-light-contrast);
+  }
+
+  mat-button-toggle.mat-button-toggle-checked{
+    background-color: var(--ion-color-custom-primary);
+    color: var(--ion-color-custom-primary-contrast);
+  }
+}

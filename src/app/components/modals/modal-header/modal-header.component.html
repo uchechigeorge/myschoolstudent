@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar color="toolbar">
+    <ion-buttons slot="start" *ngIf="showIcon">
+      <ion-button (click)="dismiss()" class="icon">
+        <ion-icon slot="icon-only" md="arrow-back-outline" ios="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>

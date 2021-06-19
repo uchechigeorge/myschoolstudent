@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "516093959783",
+    "project_id": "myschoolstudent-e6255",
+    "storage_bucket": "myschoolstudent-e6255.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516093959783:android:ce79a948fe5bf69c5bfec2",
+        "android_client_info": {
+          "package_name": "com.profeworld.myschoolstudent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516093959783-nje5903is10ju4lar6spr7tn74d00a8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsy_XB-3XSJjDdtfWv7kzX90Q9dsUPWMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516093959783-nje5903is10ju4lar6spr7tn74d00a8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

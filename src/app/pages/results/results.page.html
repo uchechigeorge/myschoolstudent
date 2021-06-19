@@ -1,0 +1,152 @@
+<ion-content class="main-content " id="screenarea">
+  <div class="warning-top ion-text-center" *ngIf="resultError" (click)="updateScratchCard()">
+    {{ resultErrorMessage }}
+  </div>
+  
+  <form class="class-form details-form">
+    <mat-form-field class="field-form" appearance="outline">
+      <mat-label>Term</mat-label>
+      <mat-select [formControl]="formControl" (selectionChange)="onSelectChanged($event)">
+        <mat-option value="">None</mat-option>
+        <mat-option *ngFor="let option of selectTerms" [value]="option.value">{{ option.text }}</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <br>
+  <div class="results">
+    <ion-text *ngIf="showError"><h5 class="ion-padding ion-text-center">{{ errMessage }}</h5></ion-text>
+    <div *ngIf="isLoading" class="ion-padding ion-text-center">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    
+    <ion-grid *ngIf="hasResults">
+      <ion-row>
+        <ion-col sizeXs="12" sizeSm="12" sizeMd="8">
+          <div class="results-table">
+            <table mat-table [dataSource]="resultDataSource" class="mat-elevation-z8">
+              
+              <ng-container matColumnDef="course">
+                <th mat-header-cell *matHeaderCellDef> Course </th>
+                <td mat-cell *matCellDef="let element"> {{ element.course }} </td>
+              </ng-container>
+              <ng-container matColumnDef="CA">
+                <th mat-header-cell *matHeaderCellDef> CA </th>
+                <td mat-cell *matCellDef="let element"> {{ element.ca }} </td>
+              </ng-container>
+              <ng-container matColumnDef="exam">
+                <th mat-header-cell *matHeaderCellDef> Exam </th>
+                <td mat-cell *matCellDef="let element"> {{ element.exam }} </td>
+              </ng-container>
+              <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef> Total </th>
+                <td mat-cell *matCellDef="let element"> {{ element.total }} </td>
+              </ng-container>
+              <ng-container matColumnDef="grade">
+                <th mat-header-cell *matHeaderCellDef> Grade </th>
+                <td mat-cell *matCellDef="let element"> {{ element.grade }} </td>
+              </ng-container>
+      
+              <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+            </table>
+            <br>
+          </div>
+        </ion-col>
+        <ion-col >
+          <ion-item *ngFor="let detail of details">
+            <ion-icon [md]="detail.icon + '-sharp'" [ios]="detail.icon + '-outline'"></ion-icon>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-note class="label">{{ detail.label }}</ion-note>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-label>{{ detail.value }}</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   
+  </div>
+
+  <ion-fab *ngIf="hasResults" cdkDrag cdkDragBoundary=".main-content" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="custom-secondary" (click)="print()">
+      <ion-icon name="print"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+
+<!-- 
+<ion-content class="" id="printarea">
+  <ion-text class="ion-padding">Name: {{ studentName }}</ion-text><br>
+  <ion-text class="ion-padding">Class: {{ className }}</ion-text><br>
+  <ion-text class="ion-padding">Term: {{ termName }}</ion-text>
+  
+  <br>
+  <div class="results">
+    <ion-text *ngIf="showError"><h5 class="ion-padding ion-text-center">{{ errMessage }}</h5></ion-text>
+    <div *ngIf="isLoading" class="ion-padding ion-text-center">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    
+    <ion-grid *ngIf="hasResults">
+      <ion-row>
+        <ion-col sizeXs="12" sizeSm="12" sizeMd="12">
+          <div class="results-table">
+            <table mat-table [dataSource]="resultDataSource" class="mat-elevation-z8">
+              
+              <ng-container matColumnDef="course">
+                <th mat-header-cell *matHeaderCellDef> Course </th>
+                <td mat-cell *matCellDef="let element"> {{ element.course }} </td>
+              </ng-container>
+              <ng-container matColumnDef="CA">
+                <th mat-header-cell *matHeaderCellDef> CA </th>
+                <td mat-cell *matCellDef="let element"> {{ element.ca }} </td>
+              </ng-container>
+              <ng-container matColumnDef="exam">
+                <th mat-header-cell *matHeaderCellDef> Exam </th>
+                <td mat-cell *matCellDef="let element"> {{ element.exam }} </td>
+              </ng-container>
+              <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef> Total </th>
+                <td mat-cell *matCellDef="let element"> {{ element.total }} </td>
+              </ng-container>
+              <ng-container matColumnDef="grade">
+                <th mat-header-cell *matHeaderCellDef> Grade </th>
+                <td mat-cell *matCellDef="let element"> {{ element.grade }} </td>
+              </ng-container>
+      
+              <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+            </table>
+            <br>
+          </div>
+        </ion-col>
+        <ion-col >
+          <ion-item *ngFor="let detail of details">
+            <ion-icon [md]="detail.icon + '-sharp'" [ios]="detail.icon + '-outline'"></ion-icon>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-note class="label">{{ detail.label }}</ion-note>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-label>{{ detail.value }}</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   
+  </div>
+
+</ion-content> -->

@@ -1,0 +1,73 @@
+:root{
+
+  .ion-color-darker {
+    --ion-color-base: var(--ion-color-darker);
+    --ion-color-base-rgb: var(--ion-color-darker-rgb);
+    --ion-color-contrast: var(--ion-color-darker-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-darker-contrast-rgb);
+    --ion-color-shade: var(--ion-color-darker-shade);
+    --ion-color-tint: var(--ion-color-darker-tint);
+  }
+
+  .ion-color-lighter {
+    --ion-color-base: var(--ion-color-lighter);
+    --ion-color-base-rgb: var(--ion-color-lighter-rgb);
+    --ion-color-contrast: var(--ion-color-lighter-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-lighter-contrast-rgb);
+    --ion-color-shade: var(--ion-color-lighter-shade);
+    --ion-color-tint: var(--ion-color-lighter-tint);
+  }
+
+  .ion-color-custom-primary {
+    --ion-color-base: var(--ion-color-custom-primary);
+    --ion-color-base-rgb: var(--ion-color-custom-primary-rgb);
+    --ion-color-contrast: var(--ion-color-custom-primary-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-custom-primary-contrast-rgb);
+    --ion-color-shade: var(--ion-color-custom-primary-shade);
+    --ion-color-tint: var(--ion-color-custom-primary-tint);
+  }
+  
+  .ion-color-custom-secondary {
+    --ion-color-base: var(--ion-color-custom-secondary);
+    --ion-color-base-rgb: var(--ion-color-custom-secondary-rgb);
+    --ion-color-contrast: var(--ion-color-custom-secondary-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-custom-secondary-contrast-rgb);
+    --ion-color-shade: var(--ion-color-custom-secondary-shade);
+    --ion-color-tint: var(--ion-color-custom-secondary-tint);
+  }
+  
+  .ion-color-toolbar {
+    --ion-color-base: var(--ion-color-toolbar);
+    --ion-color-base-rgb: var(--ion-color-toolbar-rgb);
+    --ion-color-contrast: var(--ion-color-toolbar-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-toolbar-contrast-rgb);
+    --ion-color-shade: var(--ion-color-toolbar-shade);
+    --ion-color-tint: var(--ion-color-toolbar-tint);
+  }
+
+  
+  @import './custom-variables/ion-item-var.scss';
+  @import './custom-variables/ion-content-var.scss';
+  @import './custom-variables/ion-menu-var.scss';
+  @import './custom-variables/ion-list-var.scss';
+  @import './custom-variables/ion-button-var.scss';
+  @import './custom-variables/input-var.scss';
+  @import './custom-variables/ion-loading.scss';
+  @import './custom-variables/ion-alert-var.scss';
+  @import './custom-variables/ion-radio.scss';
+  @import './custom-variables/ion-refresh.scss';
+  @import './custom-variables/ion-avatar.scss';
+  @import './custom-variables/ion-badge.scss';
+  @import './custom-variables/ion-action-sheet.scss';
+  @import './custom-variables/cards.scss';
+  @import './custom-variables/mat-toolbar.scss';
+  @import './custom-variables/mat-button.scss';
+  @import './custom-variables/mat-accordion.scss';
+  @import './custom-variables/mat-option.scss';
+  @import './custom-variables/mat-datepicker.scss';
+  @import './custom-variables/slides.scss';
+  @import './custom-variables/table.scss';
+
+}
+
+@import './custom-variables/font-family.scss';

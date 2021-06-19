@@ -1,0 +1,62 @@
+mat-toolbar{
+  .title{
+    font-size: 17px;
+  }
+}
+
+.results{
+  width: 100%;
+
+  table{
+    width: 100%;
+  }
+}
+
+.class-form{
+  padding: 20px 20px 0px 20px;
+  min-width: 150px;
+  max-width: 500px;
+  margin: 0 auto;
+
+  .field-form {
+    width: 100%;
+    font-family: PopMedium;
+  }
+}
+
+.warning-top{
+  width: 100%;
+  height: 25px;
+  background-color: var(--ion-color-custom-secondary);
+  cursor: pointer;
+}
+
+@media screen{
+  #screenarea{
+    display: block;
+  }
+
+  #printarea{
+    display: none;
+  }
+}
+
+@media print{
+  #screenarea{
+    display: none;
+  }
+
+  #printarea{
+    display: block;
+  }
+  
+  .pagebreak{ 
+    width: 100%;
+    height: 100%;
+    page-break-after: always;
+  }
+
+
+}
+
+p { page-break-after: always; }

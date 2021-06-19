@@ -1,0 +1,71 @@
+.login-title{
+
+  animation: solid-fill 1s ease forwards 4.5s;
+
+  >path:nth-child(2){
+    stroke-dasharray: 216;
+    stroke-dashoffset: 216;
+    animation: line-fill 4s forwards ease;
+  }
+  >path:nth-child(3){
+    stroke-dasharray: 175;
+    stroke-dashoffset: 175;
+    animation: line-fill 4s forwards ease 0.2s;
+  }
+  >path:nth-child(4){
+    stroke-dasharray: 209;
+    stroke-dashoffset: 209;
+    animation: line-fill 4s forwards ease 0.4s;
+  }
+  >path:nth-child(5){
+    stroke-dasharray: 189;
+    stroke-dashoffset: 189;
+    animation: line-fill 4s forwards ease 0.6s;
+  }
+  >path:nth-child(6){
+    stroke-dasharray: 189;
+    stroke-dashoffset: 189;
+    animation: line-fill 4s forwards ease 0.8s;
+  }
+  >path:nth-child(7){
+    stroke-dasharray: 104;
+    stroke-dashoffset: 104;
+    animation: line-fill 4s forwards ease 1.0s;
+  }
+  >path:nth-child(8){
+    stroke-dasharray: 264;
+    stroke-dashoffset: 264;
+    animation: line-fill 4s forwards ease 1.2s;
+  }
+  >path:nth-child(9){
+    stroke-dasharray: 221;
+    stroke-dashoffset: 221;
+    animation: line-fill 4s forwards ease 1.4s;
+  }
+  >path:nth-child(10){
+    stroke-dasharray: 292;
+    stroke-dashoffset: 292;
+    animation: line-fill 4s forwards ease 1.6s;
+  }
+  >path:nth-child(11){
+    stroke-dasharray: 225;
+    stroke-dashoffset: 225;
+    animation: line-fill 4s forwards ease 1.8s;
+  }
+}
+
+@keyframes line-fill {
+  to{
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes solid-fill {
+  from{
+    fill: transparent;
+  }
+  to{
+    fill: #fff;
+  }
+}
+

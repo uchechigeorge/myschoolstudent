@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, isPlatform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { StatusBar as StatusBarNative } from '@ionic-native/status-bar/ngx';
+import { Plugins, StatusBarStyle } from "@capacitor/core";
+import { themeKeyValue } from './models/storage-models';
+import { FcmService } from './services/fcm.service';
+import { CustomRouteService } from './services/custom-route.service';
+import { PageRoute, homeRoute } from './models/app-routes';
+import { Router } from '@angular/router';
+
+const { App, StatusBar, Storage } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -10,60 +18,107 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
-    },
-    {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
-    },
-    {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
-    },
-    {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    }
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  
+  public Theme: IThemeType = 'light';
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBarNative,
+    private fcmService: FcmService,
+    private customRoute: CustomRouteService,
+    private router: Router,
   ) {
     this.initializeApp();
   }
-
+  
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent();
       this.splashScreen.hide();
+    });
+
+    this.setBackBtnPriority();
+    
+    this.fcmService.initPush();
+    this.checkThemeAsync();
+  }
+  
+  ngOnInit() {
+  }
+
+  async checkThemeAsync() {
+    const { value } = await Storage.get({ key: themeKeyValue });
+    if(value == 'null' || value == null) {
+      this.Theme = "system-preference"
+      await Storage.set({
+        key: themeKeyValue,
+        value: this.Theme,
+      });
+    }
+    else{
+      this.Theme = value as IThemeType;
+    }
+    this.toggleTheme();
+  }
+
+  toggleTheme() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    if(this.Theme == 'light') {
+      this.setLight();
+    }
+    else if(this.Theme == 'dark') {
+      this.setDark();
+    }
+    else if(this.Theme == 'system-preference') {
+      if(prefersDark.matches) {
+        this.setDark();
+      }
+      else {
+        this.setLight();
+      }
+    }
+  }
+
+  setLight() {
+    document.body.classList.remove('dark');
+    if(!isPlatform('capacitor')) return;
+    StatusBar.setBackgroundColor({
+      color: '#673AB7',
+    });
+    StatusBar.setStyle({
+      style: StatusBarStyle.Light,
     });
   }
 
-  ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+  setDark() {
+    document.querySelector('body').classList.add('dark');
+    if(!isPlatform('capacitor')) return;
+    StatusBar.setBackgroundColor({
+      color: '#323233',
+    });
+    StatusBar.setStyle({
+      style: StatusBarStyle.Dark,
+    });
+  }
+
+  setBackBtnPriority() {
+    this.platform.backButton.subscribeWithPriority(-10, (process) => {
+      if(this.customRoute.PageRoute == PageRoute.Home || this.customRoute.PageRoute == PageRoute.Login) {
+        App.exitApp();
+      }
+      else{
+        this.router.navigateByUrl(homeRoute);
+      }
+
+      // process();
+    });   
+
+    this.platform.backButton.subscribeWithPriority(50, (process) => {
+      alert("Hii");
+    });    
   }
 }
+
+type IThemeType = "light" | "dark" | "system-preference";

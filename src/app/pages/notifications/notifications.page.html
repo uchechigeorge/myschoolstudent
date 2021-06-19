@@ -1,0 +1,109 @@
+<mat-toolbar class="header secondary">
+  <span 
+    class="title animate__animated animate__faster"
+    [class.animate__fadeIn]="!searchMode" 
+    [class.animate__fadeOut]="searchMode"
+    style="font-size: 17px;"
+    >
+    Notifications
+    <ion-badge *ngIf="newNotifications" class="toolbar-badge">
+      {{ newNotifications }}
+    </ion-badge>
+  </span>
+
+  <span class="spacer"
+    [class.animate__fadeIn]="!searchMode"
+    [class.animate__fadeOut]="searchMode"></span>
+ 
+  <button mat-icon-button [matTooltip]="searchMode ? 'Cancel Search' : 'Search'" 
+    class="animate__animated animate__faster"
+    [class.animate__fadeIn]="!searchMode" 
+    [class.animate__fadeOut]="searchMode" (click)="enterSearchMode()" (click)="searchElem.setFocus()">
+    <mat-icon>search</mat-icon>
+  </button>
+
+ 
+  <div class="search-form ion-padding animate__animated animate__faster" [class.ion-hide]="inputFirstLoad"
+  [class.animate__fadeInRight]="searchMode && !inputFirstLoad" [class.animate__fadeOutRight]="!searchMode && !inputFirstLoad">
+    <button mat-icon-button (click)="exitSearchMode()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <ion-item lines="none">
+      <ion-input #searchElem placeholder="Search..." [(ngModel)]="searchString" [debounce]="1000" (ngModelChange)="search()"></ion-input>
+    </ion-item>
+  </div>
+
+  <div class="toolbar-underline animate__animated animate__faster"
+  [class.animate__fadeInRight]="searchMode" [class.animate__fadeOutRight]="!searchMode"></div>
+</mat-toolbar>
+
+<ion-content class="main-content">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content>
+
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <br *ngIf="!searchMode">
+  <div class="btn-toggle-container ion-text-center" *ngIf="!searchMode">
+    <mat-button-toggle-group name="Details" aria-label="Details" (change)="toggleBtnClick($event)">
+      <mat-button-toggle checked value="general">General</mat-button-toggle>
+      <mat-button-toggle value="private">Private</mat-button-toggle>
+      <mat-button-toggle value="all">All Notifications</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <ion-text *ngIf="showError"><h5 class="ion-padding ion-text-center">{{ errMessage }}</h5></ion-text>
+  <div *ngIf="isLoading" class="ion-padding ion-text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div *ngIf="!searchMode">
+    <app-notification-item *ngFor="let option of notifications"
+      [header]="option.header"
+      [headerStatus]="option.headerStatus"
+      [hasHeader]="option.hasHeader"
+      [hasImg]="option.hasImg"
+      [button]="option.button"
+      [data]="option.data"
+      [displayTime]="option.displayTime"
+      [icon]="option.icon"
+      [id]="option.id"
+      [imgSrc]="option.imgSrc"
+      [message]="option.message"
+      [time]="option.time"
+      [title]="option.title"
+      [showDeleteIcon]="option.showDelete"
+      [showEditIcon]="option.showEdit"
+      (editClick)="option.editHandler()"
+      (deleteClick)="option.deleteHandler()"
+      (itemClick)="option.handler()"
+    ></app-notification-item>
+    
+  </div>
+
+  <div *ngIf="searchMode">
+
+    <app-notification-item *ngFor="let option of filterNotifications"
+      [header]="option.header"
+      [headerStatus]="option.headerStatus"
+      [hasHeader]="option.hasHeader"
+      [hasImg]="option.hasImg"
+      [button]="option.button"
+      [data]="option.data"
+      [displayTime]="option.displayTime"
+      [icon]="option.icon"
+      [id]="option.id"
+      [imgSrc]="option.imgSrc"
+      [message]="option.message"
+      [time]="option.time"
+      [title]="option.title"
+      (itemClick)="option.handler()"
+    ></app-notification-item>
+
+  </div>
+
+  <ion-infinite-scroll #scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-content class="mobile-margin ion-text-center ion-padding-top">
+  
+  <div *ngFor="let option of SettingsOptions" class="setting-option">
+
+    <ion-list-header class="settings" *ngIf="option.hasHeader">{{ option.header }}</ion-list-header>
+
+    <ion-item [button]="option.button"
+      (click)="option.handler()">
+      <ion-icon [name]="option.icon"></ion-icon>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="label">{{ option.title }}</ion-label>
+          </ion-col>
+          <ion-col size="12">
+            <ion-note>{{ option.subtitle }}</ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-toggle [disabled]="option.checkDisabled" #toggle (click)="option.handler($event)" *ngIf="option.toggle" color="custom-secondary"></ion-toggle>
+    </ion-item>
+
+  </div>
+
+  <div class="btn-container ion-padding">
+    <ion-button (click)="logOut()" size="large" expand="block">
+      <ion-text>{{ LogOutBtnText }}</ion-text>
+    </ion-button>
+  </div>
+
+</ion-content>

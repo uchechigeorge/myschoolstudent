@@ -1,0 +1,17 @@
+.login-btn-container{
+  width: 100%;
+  max-width: 150px;
+}
+
+.mobile{
+  background-color: transparent;
+
+  .title h1{
+    color: #fff;
+  }
+
+  ion-button.dark-clear-btn{
+    --color: #fff;
+    --color-activated: #ddd;
+  }
+}

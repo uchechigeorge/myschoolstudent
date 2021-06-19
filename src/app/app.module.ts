@@ -8,14 +8,22 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { MaterialModule } from './helpers/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { Angular4PaystackModule } from "angular4-paystack";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SideMenuComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [
     StatusBar,

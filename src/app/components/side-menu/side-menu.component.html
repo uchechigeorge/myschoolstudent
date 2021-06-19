@@ -1,0 +1,54 @@
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+  
+  <ion-header *ngIf="!menuDisabled" [class.ion-hide]="mobileQuery.matches">
+    <ion-toolbar color="toolbar">
+      <ion-buttons slot="start">
+        <ion-button (click)="snav.toggle()">
+          <ion-icon slot="icon-only" name="menu"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+         
+      <ion-title>{{ schoolName }} <span>student</span></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="md" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" (openedChange)="menuOpened()">
+      <div class="content" *ngIf="!closeMenu">
+        
+        <div class="details ion-padding" >
+
+          <ion-avatar class="avatar" [class.avatar-center]="!mobileQuery.matches">
+            <ion-icon [class.no-picture]="hasImage" name="person"></ion-icon>
+            <ion-img [class.no-picture]="!hasImage" [src]="imgSrc" (ionError)="imgErr()" (ionImgDidLoad)="imgLoaded()"></ion-img>
+          </ion-avatar>
+
+          <ion-text [class.ion-text-center]="!mobileQuery.matches" color="dark"><p>{{username}}</p></ion-text>
+          <ion-text [class.ion-text-center]="!mobileQuery.matches" color="dark"><p>{{activeTerm}}</p></ion-text>
+          <!-- <ion-text [class.ion-text-center]="!mobileQuery.matches" color="dark"><p>
+            student@school.com
+          </p></ion-text> -->
+        </div>
+        <ion-item *ngFor="let p of 	appPages" (click)="p.handler()" button lines="none" detail="false" [class.selected]="customRoute.PageRoute == p.pageRoute">
+          <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <ion-header class="mobile-header" *ngIf="!menuDisabled" [class.ion-hide]="!mobileQuery.matches">
+        <ion-toolbar color="toolbar">
+          <ion-buttons slot="start">
+            <ion-button (click)="snav.toggle()">
+              <ion-icon slot="icon-only" name="menu"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+             
+          <ion-title>My School <span>student</span></ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-router-outlet></ion-router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
